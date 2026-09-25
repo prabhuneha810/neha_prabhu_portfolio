@@ -182,9 +182,9 @@ export const caseStudies = {
             ratio: '286 / 571',
             images: [
               { src: '/images/belvalkar/1.png', ratio: '433 / 571' },
-              '/images/belvalkar/2.png',
-              '/images/belvalkar/3.png',
-              '/images/belvalkar/4.png',
+              '/images/belvalkar/2.jpg',
+              '/images/belvalkar/3.jpg',
+              '/images/belvalkar/4.jpg',
             ],
           },
           {
@@ -193,8 +193,8 @@ export const caseStudies = {
             gap: 66,
             ratio: '397 / 793',
             images: [
-              '/images/belvalkar/5.png',
-              '/images/belvalkar/6.png',
+              '/images/belvalkar/5.jpg',
+              '/images/belvalkar/6.jpg',
               { src: '/images/belvalkar/7.png', ratio: '482 / 793' },
             ],
           },
@@ -232,9 +232,9 @@ export const caseStudies = {
             gap: 54,
             ratio: '437 / 777',
             images: [
-              '/images/belvalkar/11.png',
-              '/images/belvalkar/12.png',
-              '/images/belvalkar/13.png',
+              '/images/belvalkar/11.jpg',
+              '/images/belvalkar/12.jpg',
+              '/images/belvalkar/13.jpg',
             ],
           },
         ],
@@ -346,7 +346,7 @@ export const caseStudies = {
             gap: 44,
             ratio: '1001 / 652',
             images: [
-              { src: '/images/mahalaxmi/6.png', ratio: '367 / 652' },
+              { src: '/images/mahalaxmi/6.jpg', ratio: '367 / 652' },
               '/images/mahalaxmi/7.png',
             ],
           },
