@@ -30,7 +30,7 @@ export const contacts = [
     id: 'linkedin',
     icon: 'linkedin',
     label: 'linkedin.com/in/neha-prabhu-a8a78200',
-    href: 'https://www.linkedin.com/in/neha-prabhu-a8a78200',
+    href: 'https://www.linkedin.com/in/neha-prabhu-aba878200?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
   {
     id: 'behance',
