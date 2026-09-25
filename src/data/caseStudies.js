@@ -325,7 +325,7 @@ export const caseStudies = {
             gap: 36,
             ratio: '981 / 530',
             images: [
-              { src: '/images/mahalaxmi/3.png', ratio: '401 / 530' },
+              { src: '/images/mahalaxmi/3.jpg', ratio: '401 / 530' },
               '/images/mahalaxmi/4.png',
             ],
           },
@@ -525,10 +525,10 @@ export const caseStudies = {
             gap: '57px 36px',
             ratio: '694 / 348',
             images: [
-              '/images/tetris-hill-view/4.png',
-              '/images/tetris-hill-view/5.png',
-              '/images/tetris-hill-view/6.png',
-              '/images/tetris-hill-view/7.png',
+              '/images/tetris-hill-view/4.jpg',
+              '/images/tetris-hill-view/5.jpg',
+              '/images/tetris-hill-view/6.jpg',
+              '/images/tetris-hill-view/7.jpg',
             ],
           },
         ],
