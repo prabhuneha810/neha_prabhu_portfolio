@@ -5,14 +5,16 @@ import { caseStudies } from '../data/caseStudies'
 import { projects } from '../data/projects'
 import './ProjectDetail.css'
 
-// Walk the project order and return the next one that actually has a
-// detail page, so "NEXT PROJECT" never lands on an empty route.
+// Walk forward through the project order and return the next one that
+// actually has a detail page, so "NEXT PROJECT" never lands on an empty
+// route. It does not wrap around: the last project has no NEXT PROJECT
+// button, only HOME.
 const nextProjectOf = (slug) => {
   const start = projects.findIndex((project) => project.id === slug)
   if (start === -1) return null
 
-  for (let step = 1; step < projects.length; step += 1) {
-    const candidate = projects[(start + step) % projects.length]
+  for (let index = start + 1; index < projects.length; index += 1) {
+    const candidate = projects[index]
     if (caseStudies[candidate.id]) return candidate
   }
   return null
