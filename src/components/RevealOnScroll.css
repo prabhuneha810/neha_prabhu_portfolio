@@ -1,0 +1,65 @@
+/*
+ * Scroll reveal - plays once, the first time an element scrolls into view.
+ * Images expand open from top to bottom; text rises and fades in; "fade"
+ * elements only fade.
+ */
+[data-reveal] {
+  transition-timing-function: ease-in-out;
+  will-change: opacity, transform, clip-path;
+}
+
+/* Text: opacity 0 -> 1 with translateY(40px) -> 0, 0.7s ease-out */
+[data-reveal='text'] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition-property: opacity, transform;
+  transition-duration: 0.4s;
+}
+
+/* Fade only, no movement, 0.7s ease-out */
+[data-reveal='fade'] {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.4s;
+}
+
+/* Images start fully clipped at the top edge and expand downwards */
+[data-reveal='image'] {
+  clip-path: inset(0 0 100% 0);
+  transition-property: clip-path;
+  transition-duration: 0.4s;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal='image'].is-visible {
+  clip-path: inset(0);
+}
+
+/* Slight stagger across items that sit side by side */
+.projects__grid .project:nth-child(3n + 2) [data-reveal],
+.case__grid > :nth-child(2),
+.case__stack > :nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.projects__grid .project:nth-child(3n + 3) [data-reveal],
+.case__grid > :nth-child(3),
+.case__stack > :nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.case__grid > :nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+@media (max-width: 900px) {
+  .projects__grid .project [data-reveal],
+  .case__grid > *,
+  .case__stack > * {
+    transition-delay: 0s;
+  }
+}

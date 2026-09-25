@@ -1,0 +1,307 @@
+/*
+ * Case study page - #F3F3F3 canvas below the 164px nav,
+ * 1420px content column (250px margins at 1920).
+ */
+.case {
+  background: var(--surface);
+  padding-bottom: 143px;
+}
+
+.case__intro {
+  padding-top: 80px;
+}
+
+/* Title - 64px / 700, -0.02em */
+.case__title {
+  font-size: clamp(2.25rem, 3.33vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* Subheading - 24px / 400 / 150% at 75% black */
+.case__summary {
+  max-width: var(--summary-width, 1176px);
+  margin-top: 24px;
+  font-size: var(--text-sub);
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--ink-75);
+}
+
+.case__body {
+  margin-top: 66px;
+}
+
+.case__section + .case__section {
+  margin-top: 88px;
+}
+
+/* Section label - 28px / 600 / 110% */
+.case__section-title {
+  margin-bottom: 40px;
+  font-size: clamp(1.25rem, 1.46vw, 1.75rem);
+  font-weight: 600;
+  line-height: 110%;
+  color: var(--ink);
+}
+
+.case__grid {
+  display: grid;
+  gap: var(--gap, 44px);
+}
+
+.case__grid + .case__grid {
+  margin-top: var(--space-before, 30px);
+}
+
+/*
+ * Artwork with built-in white margins runs wider than the text column, by
+ * `--bleed` on each side - but only claims the space that actually exists
+ * outside the column, so it never overflows a narrow viewport.
+ */
+.case__grid.is-wide {
+  margin-inline: calc(
+    -1 * min(var(--bleed, 107px), max(0px, (100vw - var(--page-width)) / 2 - var(--page-gutter)))
+  );
+}
+
+.case__grid--full {
+  grid-template-columns: 1fr;
+}
+
+.case__grid--two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.case__grid--three {
+  grid-template-columns: repeat(3, 1fr);
+  --gap: 24px;
+}
+
+/* Unequal columns, widths supplied per block (e.g. 433fr 286fr 286fr 285fr) */
+.case__grid--cols {
+  grid-template-columns: var(--columns, 1fr);
+  align-items: start;
+}
+
+/* Default 932 + 44 + 442 = 1418, i.e. the full content column */
+.case__grid--split {
+  grid-template-columns: var(--columns, 932fr 442fr);
+  align-items: start;
+}
+
+/* Left side of a split - one image, or its own nested grid */
+.case__main {
+  display: grid;
+  grid-template-columns: var(--main-columns, 1fr);
+  gap: var(--main-gap, 0px);
+  align-items: start;
+}
+
+.case__stack {
+  display: grid;
+  gap: var(--stack-gap, 30px);
+}
+
+.case__frame {
+  overflow: hidden;
+  background: var(--placeholder);
+}
+
+/*
+ * Images carry the shared `.image` / `.horizontal-image` styling (object-fit,
+ * radius, hover) from Media.css, but inside the case grid they fill their
+ * cell rather than using that stylesheet's fixed pixel sizes.
+ */
+.case__frame .media {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Holds the slot open at the design's proportions until the file exists */
+.case__frame .media--empty {
+  aspect-ratio: var(--ratio, 3 / 2);
+}
+
+/* Instagram profile - the heading itself is the link */
+.case__instagram-title {
+  margin-bottom: 0;
+}
+
+.case__instagram-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 6px;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+
+.case__instagram-link:hover,
+.case__instagram-link:focus-visible {
+  color: var(--ink-75);
+  text-decoration-color: currentColor;
+}
+
+/* Small tooltip above the link, from its data-tooltip text */
+.case__instagram-link::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  padding: 6px 10px;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+  white-space: nowrap;
+  color: #ffffff;
+  background: #222222;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.case__instagram-link:hover::after,
+.case__instagram-link:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 560px) {
+  .case__instagram-link::after {
+    white-space: normal;
+    max-width: 240px;
+  }
+}
+
+.case__actions {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 107px;
+}
+
+/* Button - 20px 32px, 8px radius, 24px / 500 label */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 32px;
+  font-size: var(--text-sub);
+  font-weight: 500;
+  line-height: 150%;
+  border-radius: 8px;
+  box-shadow: var(--shadow-button);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn--dark {
+  color: rgb(255 255 255 / 90%);
+  background: #000000;
+}
+
+.btn--dark:hover {
+  color: #ffffff;
+  background: #2a2a2a;
+}
+
+.btn--light {
+  color: var(--ink);
+  background: #e6e6e6;
+}
+
+.btn--light:hover {
+  background: #d8d8d8;
+}
+
+@media (max-width: 900px) {
+  .case {
+    padding-bottom: 80px;
+  }
+
+  .case__intro {
+    padding-top: 44px;
+  }
+
+  .case__body {
+    margin-top: 44px;
+  }
+
+  .case__section + .case__section {
+    margin-top: 64px;
+  }
+
+  .case__section-title {
+    margin-bottom: 24px;
+  }
+
+  /* Set these directly so they also beat the per-block inline overrides */
+  .case__grid {
+    gap: 24px;
+  }
+
+  .case__grid--cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case__grid + .case__grid {
+    margin-top: 24px;
+  }
+
+  .case__stack {
+    gap: 24px;
+  }
+
+  .case__actions {
+    margin-top: 64px;
+  }
+
+  .btn {
+    padding: 16px 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .case__grid--two,
+  .case__grid--three,
+  .case__grid--split,
+  .case__grid--cols,
+  .case__main {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .case__stack {
+    gap: 16px;
+  }
+}
+
+/* Phones: headings 2px smaller (body copy follows the --text-sub override) */
+@media (max-width: 600px) {
+  .case__title {
+    font-size: 34px; /* was 36px minimum */
+  }
+
+  .case__section-title {
+    font-size: 18px; /* was 20px minimum */
+  }
+
+  .btn {
+    font-size: 15px;
+  }
+}

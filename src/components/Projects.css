@@ -1,0 +1,73 @@
+/* Work grid - three 414 x 275 tiles per row, 88px apart at 1920 */
+.projects {
+  padding-bottom: 229px;
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: clamp(24px, 6.2vw, 88px);
+  row-gap: 117px;
+}
+
+.project__link {
+  display: block;
+  color: inherit;
+}
+
+.project__title {
+  margin-bottom: 25px;
+  font-size: var(--text-sub);
+  font-weight: 500;
+  line-height: 150%;
+  color: var(--ink);
+}
+
+.project__frame {
+  overflow: hidden;
+  aspect-ratio: 414 / 275;
+  border-radius: 8px;
+  background: var(--placeholder);
+}
+
+.project__frame .media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.project__link:hover .project__frame .media {
+  transform: scale(1.03);
+}
+
+.project__link:hover .project__title {
+  color: var(--ink-75);
+}
+
+@media (max-width: 900px) {
+  .projects {
+    padding-bottom: 120px;
+  }
+
+  .projects__grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 32px;
+    row-gap: 64px;
+  }
+
+  .project__title {
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .projects {
+    padding-bottom: 80px;
+  }
+
+  .projects__grid {
+    grid-template-columns: 1fr;
+    row-gap: 48px;
+  }
+}

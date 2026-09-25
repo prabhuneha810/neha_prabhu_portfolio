@@ -1,0 +1,106 @@
+/* Navigation - 164px tall, white, site name left / links right */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #ffffff;
+}
+
+.header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 164px;
+}
+
+.header__brand {
+  font-size: var(--text-body);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.header__brand:hover {
+  opacity: 0.7;
+}
+
+/* Hamburger - only shown on phones (see media query below) */
+.header__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* Inline links on tablet and desktop - clicking one scrolls to that section */
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header__nav a {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink-75);
+  transition: color 0.2s ease;
+}
+
+.header__nav a:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .header__inner {
+    height: 96px;
+  }
+
+  .header__nav {
+    gap: 20px;
+  }
+}
+
+/* Phones: hamburger on the right, links in a dropdown */
+@media (max-width: 600px) {
+  .header__inner {
+    height: 72px;
+  }
+
+  .header__brand {
+    font-size: 14px;
+  }
+
+  .header__nav a {
+    font-size: 14px;
+  }
+
+  .header__toggle {
+    display: inline-flex;
+  }
+
+  .header__nav {
+    position: absolute;
+    top: calc(100% - 8px);
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    min-width: 180px;
+    padding: 20px 24px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 18px 40px rgb(0 0 0 / 8%);
+  }
+
+  .header__nav.is-open {
+    display: flex;
+  }
+}

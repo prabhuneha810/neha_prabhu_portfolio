@@ -1,0 +1,198 @@
+/* Hero - photo, 75px Playfair title, 24px copy, RESUME button */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 51px;
+  padding-bottom: 137px;
+  text-align: center;
+}
+
+/* Image box — original size, never resizes */
+.photo-box {
+  width: 457px;
+  height: 555px;
+  max-width: 100%;
+  position: relative;
+  /* No overflow clip here: a rounded clip leaves a faint anti-aliased outline
+     of the photo showing through the curtains once they have closed. The
+     photo carries the radius instead, and the page-coloured curtains simply
+     cover its corners. */
+}
+
+.photo-box img,
+.photo-box svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* crops, never distorts */
+  display: block;
+  border-radius: 20px;
+}
+
+/* Curtain panels — sit on top of the image, cover it without resizing it */
+.curtain {
+  position: absolute;
+  /* 1px overhang so no hairline of photo shows at the seam or the edges */
+  top: -1px;
+  width: calc(50% + 1px);
+  height: calc(100% + 2px);
+  background: var(--bg); /* match your page/section background */
+  transform: scaleX(var(--p, 0)); /* 0 = fully open, 1 = fully closed */
+  pointer-events: none;
+}
+
+.curtain-l {
+  left: 0;
+  transform-origin: left; /* grows left → right */
+}
+
+.curtain-r {
+  right: 0;
+  transform-origin: right; /* grows right → left */
+}
+
+/* Figma "Creative Visualizer": Playfair 600, 75px / 100%, -0.02em, 552 wide */
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  max-width: 552px;
+  margin: 80px 0 0; /* gap: photo → headline */
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 75px;
+  line-height: 100%;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: #000000;
+}
+
+/* Figma "Subheading": Inter 400, 24px / 150%, 585 wide, 75% black */
+.hero__intro {
+  margin: 70px auto 0; /* gap: headline → paragraph */
+  max-width: 585px;
+  font-family: 'Inter', var(--font-body);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 150%;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* Button - 164 x 76, 20px 32px padding, #8A8A8A */
+.hero__resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 68px; /* gap: paragraph → button */
+  padding: 20px 32px;
+  font-size: var(--text-sub);
+  font-weight: 500;
+  line-height: 150%;
+  /* Same colours as the NEXT PROJECT button on case-study pages */
+  color: rgb(255 255 255 / 90%);
+  background: #000000;
+  border-radius: 8px;
+  box-shadow: var(--shadow-button);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero__resume:hover {
+  color: #ffffff;
+  background: #2a2a2a;
+  transform: translateY(-1px);
+}
+
+/*
+ * Text is hidden until the curtains have fully closed (Hero.jsx adds
+ * `is-closed` to .hero at that point), then pops up from below, staggered:
+ * headline, then paragraph, then button.
+ */
+.hero__title,
+.hero__intro,
+.hero__resume {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out, background 0.2s ease;
+}
+
+.hero.is-closed .hero__title,
+.hero.is-closed .hero__intro,
+.hero.is-closed .hero__resume {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero.is-closed .hero__intro {
+  transition-delay: 0.12s;
+}
+
+.hero.is-closed .hero__resume {
+  transition-delay: 0.24s;
+}
+
+.hero.is-closed .hero__resume:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 32px;
+    padding-bottom: 80px;
+  }
+
+  .hero__title {
+    margin-top: 48px;
+  }
+
+  .hero__intro {
+    margin-top: 40px;
+  }
+}
+
+/*
+ * Phones: smaller photo with side margins, text 2px smaller. The text is
+ * always visible, stacked directly below the photo (no reveal, no gap).
+ * The curtain animation on the photo stays as it is.
+ */
+@media (max-width: 600px) {
+  .hero {
+    padding-bottom: 72px;
+  }
+
+  .photo-box {
+    width: 78%;
+    height: auto;
+    aspect-ratio: 457 / 555;
+  }
+
+  .hero__title {
+    margin-top: 40px;
+    font-size: 45px;
+  }
+
+  .hero__intro {
+    margin-top: 24px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .hero__resume {
+    margin-top: 32px;
+    font-size: 12px;
+  }
+
+  /* Text shown from the start on phones - no pop-up */
+  .hero__title,
+  .hero__intro,
+  .hero__resume {
+    opacity: 1;
+    transform: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .hero__resume {
+    padding: 16px 28px;
+  }
+}
