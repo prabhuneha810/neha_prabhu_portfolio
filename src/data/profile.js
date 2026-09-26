@@ -6,7 +6,7 @@ export const profile = {
   intro:
     "Hi, I'm Neha, a Creative Visualizer and Brand Designer with 5+ years of experience - creating thoughtful, story-driven designs that connect with people.",
   // CV hosted on Google Drive - opens in a new tab from the RESUME button
-  resume: 'https://drive.google.com/file/d/1-VUrsW3ZMhU0nCoZ962y-nXp9UFsg3UL/view?usp=sharing',
+  resume: 'https://drive.google.com/file/d/1d2rQGCDUx_Z-ulQXAa2ifMeh6vxZdtUE/view?usp=sharing',
 }
 
 // Rendered as a 2 x 2 block: column one is email + phone, column two is
