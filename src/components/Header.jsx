@@ -1,17 +1,38 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Icon from './Icon'
 import { navLinks, profile } from '../data/profile'
 import './Header.css'
 
+// Site name on the left, hamburger on the right at every screen size (per the
+// design). The links live in a dropdown that the hamburger opens.
 const Header = () => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
-  // Mobile-only dropdown state; on tablet and desktop the links are always inline
   const [open, setOpen] = useState(false)
+  const innerRef = useRef(null)
 
   // Close the dropdown when the route changes
   useEffect(() => setOpen(false), [pathname])
+
+  // Close on Escape, or on a click/tap anywhere outside the header
+  useEffect(() => {
+    if (!open) return
+
+    const onKey = (event) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    const onPointer = (event) => {
+      if (!innerRef.current?.contains(event.target)) setOpen(false)
+    }
+
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onPointer)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onPointer)
+    }
+  }, [open])
 
   const goToSection = (event, link) => {
     event.preventDefault()
@@ -29,7 +50,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="header__inner container">
+      <div className="header__inner container" ref={innerRef}>
         <Link className="header__brand" to="/">
           {profile.siteTitle}
         </Link>
@@ -42,7 +63,16 @@ const Header = () => {
           aria-controls="primary-nav"
           aria-label={open ? 'Close menu' : 'Open menu'}
         >
-          <Icon name={open ? 'close' : 'menu'} size={26} strokeWidth={2} />
+          {open ? (
+            <Icon name="close" size={26} strokeWidth={2.4} />
+          ) : (
+            // Figma "Group 8": three 4px bars in a 26.45 x 23 box
+            <span className="header__burger" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+          )}
         </button>
 
         <nav

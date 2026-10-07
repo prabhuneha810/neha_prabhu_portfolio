@@ -31,6 +31,16 @@ const Frame = ({ src, ratio, alt }) => (
   </div>
 )
 
+// Optional per-page rhythm from `study.spacing` → the --case-*-gap variables
+// that ProjectDetail.css reads. Keys not given keep the stylesheet defaults.
+const spacingStyle = (spacing = {}) => {
+  const style = {}
+  for (const [key, value] of Object.entries(spacing)) {
+    if (typeof value === 'number') style[`--case-${key}-gap`] = `${value}px`
+  }
+  return style
+}
+
 // An image is either a path, or { src, ratio } when it needs its own ratio
 const toImage = (image, fallbackRatio) =>
   typeof image === 'string' ? { src: image, ratio: fallbackRatio } : { ratio: fallbackRatio, ...image }
@@ -106,7 +116,7 @@ const ProjectDetail = () => {
   const next = nextProjectOf(slug)
 
   return (
-    <article className="case">
+    <article className="case" style={spacingStyle(study.spacing)}>
       <div className="case__intro container">
         <h1 className="case__title" data-reveal="text">
           {study.title}

@@ -29,6 +29,17 @@
  * study.instagram - optional `{ label, href }`; when present, the page ends
  *                   with a button that opens that profile in a new tab.
  */
+/*
+ * study.spacing - optional per-page vertical rhythm, in px, when that page's
+ *                 Figma differs from the shared defaults in ProjectDetail.css:
+ *                 { intro, section, title, block, actions, bottom }
+ *                 intro   - summary → first section title    (default 66)
+ *                 section - image → next section title       (default 88)
+ *                 title   - section title → first image      (default 40)
+ *                 block   - image → next image in a section  (default 30)
+ *                 actions - last image → HOME / NEXT buttons (default 107)
+ *                 bottom  - buttons → footer                  (default 143)
+ */
 export const caseStudies = {
   nivasa: {
     title: 'NIVASA',
@@ -114,6 +125,88 @@ export const caseStudies = {
       label: 'Nivasa Instagram Profile',
       href: 'https://www.instagram.com/nivasagroup?igsi=ZjUwYjBsbHFjeHoy',
     },
+  },
+
+  /*
+   * Figma "2ND" frame, 1920 x 15401. Every image is a full-width 1420 x 799
+   * slide (the exports are 1920 x 1080, the same 16:9), one per section,
+   * except Brand Application (five, 40px apart) and the closing quote that
+   * sits 40px under the Photography image. Files are numbered in page order.
+   */
+  youthville: {
+    title: 'YOUTHVILLE',
+    summaryWidth: 1247,
+    summary:
+      'Youthville is a modern student and young professional accommodation brand focused on creating comfortable, vibrant spaces that bring together living, community, and a sense of belonging.',
+    spacing: { intro: 51, section: 61, title: 33, block: 40, actions: 135, bottom: 84 },
+    sections: [
+      {
+        id: 'brand-guidelines',
+        title: 'Brand Guidelines',
+        blocks: [{ layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/1.jpg'] }],
+      },
+      {
+        id: 'branding-idea',
+        title: 'Branding Idea',
+        blocks: [{ layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/2.jpg'] }],
+      },
+      {
+        id: 'logo-usage',
+        title: 'Logo Usage',
+        blocks: [{ layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/3.jpg'] }],
+      },
+      {
+        id: 'emblem-design',
+        title: 'Emblem Design',
+        blocks: [{ layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/4.jpg'] }],
+      },
+      {
+        id: 'typeface',
+        title: 'Typeface',
+        blocks: [{ layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/5.jpg'] }],
+      },
+      {
+        id: 'colour-palette',
+        title: 'Colour Palette',
+        blocks: [{ layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/6.jpg'] }],
+      },
+      {
+        id: 'pattern-style',
+        title: 'Pattern Style',
+        blocks: [{ layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/7.jpg'] }],
+      },
+      {
+        id: 'iconography',
+        title: 'Iconography',
+        blocks: [{ layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/8.jpg'] }],
+      },
+      {
+        id: 'brand-application',
+        title: 'Brand Application',
+        blocks: [
+          // Visiting cards, bottles, keycards, tote bags, uniforms
+          { layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/9.jpg'] },
+          { layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/10.jpg'] },
+          { layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/11.jpg'] },
+          { layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/12.jpg'] },
+          { layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/13.jpg'] },
+        ],
+      },
+      {
+        id: 'social-media',
+        title: 'Social Media',
+        blocks: [{ layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/14.jpg'] }],
+      },
+      {
+        id: 'photography',
+        title: 'Photography',
+        blocks: [
+          { layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/15.jpg'] },
+          // Closing quote - "New beginnings feel better when you find where you belong."
+          { layout: 'full', ratio: '1420 / 799', images: ['/images/youthville/16.jpg'] },
+        ],
+      },
+    ],
   },
 
   acurise: {
@@ -482,6 +575,9 @@ export const caseStudies = {
     },
   },
 
+  // Tetris hill view is commented out of the home grid in src/data/projects.js
+  // (dropped in the latest design). This entry is kept so /work/tetris-hill-view
+  // still renders and the tile can be restored by uncommenting it there.
   'tetris-hill-view': {
     title: 'TETRIS HILLVIEW',
     summaryWidth: 1419,

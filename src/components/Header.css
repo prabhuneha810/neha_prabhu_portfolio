@@ -1,4 +1,5 @@
-/* Navigation - 164px tall, white, site name left / links right */
+/* Navigation - Figma: 164px tall, white, "Neha Prabhu - Portfolio" at
+   x 246 / y 67 (Inter 500 20px), hamburger at x 1645 / y 67 */
 .header {
   position: sticky;
   top: 0;
@@ -26,27 +27,65 @@
   opacity: 0.7;
 }
 
-/* Hamburger - only shown on phones (see media query below) */
+/* Hamburger - shown at every width. Figma "Group 8": 26.45 x 23 at x 1645,
+   three 4px black bars at 40% opacity (bar tops at 0 / 9.5 / 19px). */
 .header__toggle {
-  display: none;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 4px;
+  margin-right: -4px; /* cancel the padding so the bars end flush at x 1671 */
   color: var(--ink);
+  opacity: 0.4;
   background: none;
   border: 0;
   cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
-/* Inline links on tablet and desktop - clicking one scrolls to that section */
-.header__nav {
+.header__toggle:hover,
+.header__toggle[aria-expanded='true'] {
+  opacity: 1;
+}
+
+.header__burger {
   display: flex;
-  align-items: center;
-  gap: 40px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26.45px;
+  height: 23px;
+}
+
+.header__burger span {
+  display: block;
+  height: 4px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+/* Dropdown under the hamburger - clicking a link scrolls to that section */
+.header__nav {
+  position: absolute;
+  top: calc(100% - 40px);
+  right: 0;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 200px;
+  padding: 24px 28px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 18px 40px rgb(0 0 0 / 8%);
+}
+
+.header__nav.is-open {
+  display: flex;
 }
 
 .header__nav a {
-  font-size: 1rem;
+  font-size: var(--text-body);
   font-weight: 500;
   color: var(--ink-75);
   transition: color 0.2s ease;
@@ -62,11 +101,10 @@
   }
 
   .header__nav {
-    gap: 20px;
+    top: calc(100% - 16px);
   }
 }
 
-/* Phones: hamburger on the right, links in a dropdown */
 @media (max-width: 600px) {
   .header__inner {
     height: 72px;
@@ -76,31 +114,13 @@
     font-size: 14px;
   }
 
-  .header__nav a {
-    font-size: 14px;
-  }
-
-  .header__toggle {
-    display: inline-flex;
-  }
-
   .header__nav {
-    position: absolute;
     top: calc(100% - 8px);
-    right: 0;
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
     min-width: 180px;
     padding: 20px 24px;
-    background: #ffffff;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    box-shadow: 0 18px 40px rgb(0 0 0 / 8%);
   }
 
-  .header__nav.is-open {
-    display: flex;
+  .header__nav a {
+    font-size: 14px;
   }
 }

@@ -3,9 +3,10 @@
   background: var(--footer-bg);
 }
 
+/* Figma: band 2912-3263 (351 tall), heading at 2995, last row ends 3169 */
 .footer__inner {
   padding-top: 83px;
-  padding-bottom: 83px;
+  padding-bottom: 94px;
 }
 
 .footer__heading {

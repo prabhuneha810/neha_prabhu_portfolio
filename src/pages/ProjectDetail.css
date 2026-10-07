@@ -3,8 +3,17 @@
  * 1420px content column (250px margins at 1920).
  */
 .case {
+  /* Vertical rhythm. These defaults fit most pages; a study can override any
+     of them through `spacing` in caseStudies.js (set as inline vars). */
+  --case-intro-gap: 66px; /* summary → first section title */
+  --case-section-gap: 88px; /* image → next section title */
+  --case-title-gap: 40px; /* section title → first image */
+  --case-block-gap: 30px; /* image → next image in a section */
+  --case-actions-gap: 107px; /* last image → HOME / NEXT PROJECT */
+  --case-bottom-gap: 143px; /* buttons → footer */
+
   background: var(--surface);
-  padding-bottom: 143px;
+  padding-bottom: var(--case-bottom-gap);
 }
 
 .case__intro {
@@ -32,16 +41,16 @@
 }
 
 .case__body {
-  margin-top: 66px;
+  margin-top: var(--case-intro-gap);
 }
 
 .case__section + .case__section {
-  margin-top: 88px;
+  margin-top: var(--case-section-gap);
 }
 
 /* Section label - 28px / 600 / 110% */
 .case__section-title {
-  margin-bottom: 40px;
+  margin-bottom: var(--case-title-gap);
   font-size: clamp(1.25rem, 1.46vw, 1.75rem);
   font-weight: 600;
   line-height: 110%;
@@ -54,7 +63,7 @@
 }
 
 .case__grid + .case__grid {
-  margin-top: var(--space-before, 30px);
+  margin-top: var(--space-before, var(--case-block-gap));
 }
 
 /*
@@ -188,7 +197,7 @@
   display: flex;
   justify-content: center;
   gap: 24px;
-  margin-top: 107px;
+  margin-top: var(--case-actions-gap);
 }
 
 /* Button - 20px 32px, 8px radius, 24px / 500 label */

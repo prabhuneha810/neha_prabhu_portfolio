@@ -1,13 +1,18 @@
-/* Work grid - three 414 x 275 tiles per row, 88px apart at 1920 */
+/* Work grid - three 414 x 275 tiles per row, 88px apart at 1920.
+   Rows: Mahalaxmi / Youthville / Nivasa, Creamberg / Acurise / Belvalkar,
+   Kalika Steel / Skylife / GRD - order comes from src/data/projects.js */
 .projects {
-  padding-bottom: 229px;
+  padding-bottom: 245px; /* Figma: last tile bottom 2667 → footer top 2912 */
 }
 
+/* Figma: tiles at x = 248 / 752 / 1256, so 89px between 415-wide tiles.
+   Tile tops are 1469 / 1928 / 2392 - a 459-464px pitch - so with a 36px
+   title + 25px gap + 275px tile the row gap is 125px. */
 .projects__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: clamp(24px, 6.2vw, 88px);
-  row-gap: 117px;
+  column-gap: clamp(24px, 6.2vw, 89px);
+  row-gap: 125px;
 }
 
 .project__link {
